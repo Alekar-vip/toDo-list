@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Consultar Tareas</ion-title>
+    <ion-title>Consulta Tareas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,9 +11,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-item>
-    <ion-label>Selecciona una categoría</ion-label>
+  <ion-item lines="full" class="categoria-item">
+    <ion-label class="categoria-label">Selecciona una categoría</ion-label>
     <ion-select [(ngModel)]="categoriaSeleccionada" (ionChange)="filtrarTareas()">
+      <ion-select-option [value]="null">Mostrar todas</ion-select-option> <!-- Opción para mostrar todos -->
       <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
         {{ categoria.nombre }}
       </ion-select-option>

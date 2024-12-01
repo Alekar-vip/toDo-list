@@ -5,30 +5,36 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './consulta-app.component.html',
   styleUrls: ['./consulta-app.component.scss'],
 })
-export class ConsultaAppComponent {
-  categorias = [
-    { id: 1, nombre: 'Trabajo' },
-    { id: 2, nombre: 'Hogar' },
-    { id: 3, nombre: 'Compras' },
-    { id: 4, nombre: 'Otro' },
-  ];
+export class ConsultaAppComponent implements OnInit {
+  categorias: { id: number; nombre: string }[] = [];
+  tareas: { nombre: string; descripcion: string; categoriaId: number }[] = [];
+  tareasFiltradas: { nombre: string; descripcion: string; categoriaId: number }[] = [];
+  categoriaSeleccionada: number | null = null;  // Se permite un valor null para mostrar todas
 
-  tareas = [
-    { id: 1, nombre: 'Preparar reporte', descripcion: 'Enviar reporte mensual', categoriaId: 1 },
-    { id: 2, nombre: 'Limpiar cocina', descripcion: 'Lavar platos y barrer', categoriaId: 2 },
-    { id: 3, nombre: 'Comprar frutas', descripcion: 'Manzanas y bananas', categoriaId: 3 },
-    { id: 4, nombre: 'Leer libro', descripcion: 'Terminar capítulo 3', categoriaId: 4 },
-  ];
+  ngOnInit() {
+    this.categorias = [
+      { id: 1, nombre: 'Trabajo' },
+      { id: 2, nombre: 'Hogar' },
+      { id: 3, nombre: 'Compras' },
+      { id: 4, nombre: 'Otro' },
+    ];
 
-  categoriaSeleccionada: number | null = null;
-  tareasFiltradas = [...this.tareas];
+    this.tareas = [
+      { nombre: 'Tarea 1', descripcion: 'Descripción tarea 1', categoriaId: 1 },
+      { nombre: 'Tarea 2', descripcion: 'Descripción tarea 2', categoriaId: 2 },
+      { nombre: 'Tarea 3', descripcion: 'Descripción tarea 3', categoriaId: 3 },
+      { nombre: 'Tarea 4', descripcion: 'Descripción tarea 4', categoriaId: 4 },
+      { nombre: 'Tarea 5', descripcion: 'Descripción tarea 5', categoriaId: 1 },
+    ];
 
-  constructor() {}
+    this.tareasFiltradas = this.tareas; // Al inicio, mostramos todas las tareas
+  }
 
-
-  filtrarTareas(): void {
-    this.tareasFiltradas = this.categoriaSeleccionada
-      ? this.tareas.filter(t => t.categoriaId === this.categoriaSeleccionada)
-      : [...this.tareas];
+  filtrarTareas() {
+    if (this.categoriaSeleccionada === null) {
+      this.tareasFiltradas = this.tareas; // Mostrar todas las tareas
+    } else {
+      this.tareasFiltradas = this.tareas.filter(tarea => tarea.categoriaId === this.categoriaSeleccionada);
+    }
   }
 }
