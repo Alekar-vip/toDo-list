@@ -1,0 +1,16 @@
+.categoria-item {
+  margin-bottom: 20px; /* Espaciado entre el título y el combobox */
+}
+
+.categoria-label {
+  font-size: 1.1rem; /* Un tamaño de texto un poco mayor */
+  font-weight: bold; /* Hace que el texto "Selecciona una categoría" se vea más destacado */
+  margin-bottom: 8px; /* Espacio entre el texto y el combobox */
+  color: #333; /* Color de texto */
+}
+
+ion-select {
+  font-size: 1rem; /* Ajusta el tamaño de fuente para el combobox */
+}
+
+
