@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Consultar Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Consultar Tareas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <ion-label>Selecciona una categoría</ion-label>
+    <ion-select [(ngModel)]="categoriaSeleccionada" (ionChange)="filtrarTareas()">
+      <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let tarea of tareasFiltradas">
+      <ion-label>
+        <h2>{{ tarea.nombre }}</h2>
+        <p>{{ tarea.descripcion }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

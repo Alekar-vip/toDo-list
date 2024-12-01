@@ -63,5 +63,30 @@ export class TareasAppComponent {
     return this.categorias.find((cat) => cat.id === categoriaId)?.nombre || '';
   }
 
+  async eliminarTarea(tareaId: number): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Confirmar eliminación',
+      message: '¿Estás seguro de que deseas eliminar esta tarea?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Eliminación cancelada');
+          },
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.tareas = this.tareas.filter(tarea => tarea.id !== tareaId);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+
 
 }
