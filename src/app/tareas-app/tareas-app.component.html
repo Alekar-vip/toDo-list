@@ -1,0 +1,45 @@
+
+
+<app-header-app></app-header-app>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tareas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-button expand="block" (click)="abrirModalAgregarTarea()">
+    Agregar Tarea
+  </ion-button>
+
+  <ng-container *ngIf="tareas.length > 0; else noTareas">
+    <ion-list>
+      <ion-item *ngFor="let tarea of tareas">
+        <ion-checkbox
+          slot="start"
+          [checked]="tarea.completada"
+          (ionChange)="toggleCompletada(tarea.id)"
+        ></ion-checkbox>
+        <ion-label>
+          {{ tarea.titulo }}
+          <p>({{ getCategoriaNombre(tarea.categoriaId) }})</p>
+        </ion-label>
+        <ion-button
+          slot="end"
+          color="danger"
+          fill="clear"
+          (click)="eliminarTarea(tarea.id)"
+        >
+          <ion-icon name="trash-bin"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-template #noTareas>
+    <ion-text color="medium">
+      <p>No tengo tareas pendientes.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>
