@@ -46,3 +46,21 @@ Este proyecto es una aplicación de gestión de tareas desarrollada con **Ionic*
 
 
 
+### **Generar Apk**
+
+
+#### **Requisitos previos**
+
+Instalación de Cordova
+
+- npm install -g cordova
+- ionic cordova platform add android
+
+#### **Construir la aplicación**
+
+- npm install -g cordova
+- ionic cordova build android --release
+
+
+
+
